@@ -1,4 +1,7 @@
 package com.ttn.linksharing
+/*
+Add logincontroller with index,loginHandler and logout action
+*/
 
 class LoginController {
 
