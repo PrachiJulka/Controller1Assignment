@@ -1,7 +1,7 @@
 package com.ttn.linksharing
 /*
-LoginController index action will check if there is session.user exists or not if exist
-forward to user controller index action else render failure
+Login Controller logout action will do session.invalidate
+ and forward the request to login controller index action
 */
 
 class LoginController {
@@ -15,7 +15,8 @@ class LoginController {
     }
 
     def logout(){
-        redirect(action:'/')
+        session.invalidate()
+        redirect(action:'index')
     }
 
     def loginHandler(){
