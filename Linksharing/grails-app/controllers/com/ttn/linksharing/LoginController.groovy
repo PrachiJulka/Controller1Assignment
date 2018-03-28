@@ -1,6 +1,7 @@
 package com.ttn.linksharing
-/*
-LoginController loginHandler action will take 2 argument username and password
+/*If Loginhandler action finds user with given username and
+ password then it will check user active or
+ not if active set session.user to user and redirect request to login index action
 */
 
 class LoginController {
@@ -8,7 +9,7 @@ class LoginController {
     def index() {
 
         if(session.user)
-            forward(controller: 'login',action:'index')
+            forward(controller: 'user',action:'index')
         else
             render( 'failure')
     }
@@ -19,8 +20,15 @@ class LoginController {
     }
 
     def loginHandler(String userName,String password){
-
-
-        redirect(action:'index')
+        println(userName)
+        User user=User.findByUserNameAndPassword(userName,password)
+        if(user!=null) {
+            if(user.active) {
+            session.user=user
+            redirect(action: 'index')
+            }
+        }
+        else
+            redirect(action:'index')
     }
 }
