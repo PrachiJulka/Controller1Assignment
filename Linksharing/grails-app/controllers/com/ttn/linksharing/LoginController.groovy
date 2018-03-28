@@ -1,7 +1,6 @@
 package com.ttn.linksharing
 /*
-Login Controller logout action will do session.invalidate
- and forward the request to login controller index action
+LoginController loginHandler action will take 2 argument username and password
 */
 
 class LoginController {
