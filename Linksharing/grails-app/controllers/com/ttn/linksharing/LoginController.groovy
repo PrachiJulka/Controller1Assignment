@@ -19,7 +19,7 @@ class LoginController {
         redirect(action:'index')
     }
 
-    def loginHandler(){
+    def loginHandler(String userName,String password){
 
 
         redirect(action:'index')
