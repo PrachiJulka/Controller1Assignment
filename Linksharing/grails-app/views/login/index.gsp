@@ -17,6 +17,7 @@ hello
 ${keyFail}
 ${flash.error}
 %{--</g:if>--}%
+<prachi:firstletterCapital name="prachi"></prachi:firstletterCapital>
 
 </body>
 </html>

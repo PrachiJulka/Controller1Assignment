@@ -1,7 +1,6 @@
 package com.ttn.linksharing
-/*If Loginhandler action finds user with given username and
- password then it will check user active or
- not if active set session.user to user and redirect request to login index action
+/*If user is not found then flash.error is set to 'User not found' and flash.error
+ is rendered - Urlmapping is updated for / action to controller login action index
 */
 
 class LoginController {
@@ -11,9 +10,8 @@ class LoginController {
         if (session.user)
             forward(controller: 'user', action: 'index')
         else {
-            if(flash.error)
-            render(view: "index")
-            else
+            if(!flash.error)
+
                 render("failure")
         }
     }
@@ -27,6 +25,7 @@ class LoginController {
         println(userName)
         User user = User.findByUserNameAndPassword(userName, password)
         if(user!=null) {
+
             if(user.active) {
              session.user=user
             }
@@ -35,7 +34,12 @@ class LoginController {
 
             }
         }
-        redirect(action: 'index')
+        else
+        {
+            flash.error="User not found"
+        }
+        redirect(action:'index')
+
 
 
     }

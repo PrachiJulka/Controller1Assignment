@@ -23,7 +23,7 @@
 %{--<g:paginate total="5" max=""--}%
 <%-- show super administrative functions --%>
     Hello
-
+<prachi:firstletterCapital name="prachi"></prachi:firstletterCapital>
 
 
 </body>
