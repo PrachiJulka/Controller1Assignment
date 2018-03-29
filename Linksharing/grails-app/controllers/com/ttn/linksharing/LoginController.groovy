@@ -1,6 +1,9 @@
 package com.ttn.linksharing
-/*If user is not found then flash.error is set to 'User not found' and flash.error
- is rendered - Urlmapping is updated for / action to controller login action index
+
+import com.ttn.constants.DefaultPassword
+
+/*Errors with proper message properties should be
+rendered if user is not set and flash message should be set.
 */
 
 class LoginController {
@@ -36,6 +39,27 @@ class LoginController {
         render(view:'index')
 
 
+    }
+
+    def register(){
+        User admin = new User(email: "admin@gmail.com", password: DefaultPassword.PASSWORD, firstName: "admin", lastName: "portal", userName: 'adminPortal', photo: 121, admin: true, active: true)
+        if(admin.save()){
+            flash.message="Admin Saved Successfully"
+        }
+        else {
+            flash.error="error"
+        }
+
+        //normal
+        User normal = new User(email: "prachijulka@gmail.com", password: DefaultPassword.PASSWORD, firstName: "Prachi", lastName: "Julka", userName: 'PrachiJulka', photo: 122, admin: false, active: true)
+        if(normal.save()){
+            flash.message="Normal User Saved Successfully"
+        }
+        else {
+            flash.error="error"
+        }
+
+        redirect(action: "index")
     }
 
 }
