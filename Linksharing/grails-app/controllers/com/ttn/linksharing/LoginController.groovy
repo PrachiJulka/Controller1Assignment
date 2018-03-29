@@ -54,9 +54,11 @@ class LoginController {
         User normal = new User(email: "prachijulka@gmail.com", password: DefaultPassword.PASSWORD, firstName: "Prachi", lastName: "Julka", userName: 'PrachiJulka', photo: 122, admin: false, active: true)
         if(normal.save()){
             flash.message="Normal User Saved Successfully"
+
         }
         else {
             flash.error="error"
+
         }
 
         redirect(action: "index")
