@@ -7,20 +7,20 @@ class ApplicatinInterceptor {
             matchAll()
     }
 
+
+
     boolean before() {
+        if (!session.user) {
+            flash.error= "NO ACTIVE SESSION"
+             return false
+        }
+       return true
+    }
+    boolean after() {
 
         log.info("ACTION AND CONTROLLER LOG: ${params.toString()}")
         true
     }
-
-    boolean after() {
-        if (!session.user) {
-            flash.error= "NO ACTIVE SESSION"
-            return false
-        }
-        return true
-    }
-
     void afterView() {
         // no-op
     }
