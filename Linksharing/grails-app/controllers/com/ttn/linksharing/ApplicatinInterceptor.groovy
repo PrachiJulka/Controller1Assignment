@@ -5,17 +5,20 @@ class ApplicatinInterceptor {
 
     ApplicatinInterceptor(){
             matchAll()
-
     }
 
     boolean before() {
+
         log.info("ACTION AND CONTROLLER LOG: ${params.toString()}")
         true
     }
 
     boolean after() {
-        log.info("ACTION AND CONTROLLER LOG: ${params.toString()}")
-        true
+        if (!session.user) {
+            flash.error= "NO ACTIVE SESSION"
+            return false
+        }
+        return true
     }
 
     void afterView() {
