@@ -6,17 +6,12 @@ package com.ttn.linksharing
 class LoginController {
 
     def index() {
-        if (session.user)
-            forward(controller: 'user', action: 'index')
-        else {
-            if(!flash.error)
-            render("User not found")
-        }
-    }
+
+      }
 
     def logout() {
         session.invalidate()
-        redirect(action: 'index')
+        redirect(action:'/index')
     }
 
     def loginHandler(String userName, String password) {

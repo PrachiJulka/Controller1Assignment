@@ -1,8 +1,13 @@
 package com.ttn.linksharing
-//Add User controller with index action that will render text 'user dahsboard'
+//Update test case for usercontroller index action
+// Add show action for topic which will take id as a parameter
 class UserController {
 
     def index() {
-        render("user dashboard")
+        render(session.user.userName)
+    }
+
+    def show(Integer id){
+
     }
 }
