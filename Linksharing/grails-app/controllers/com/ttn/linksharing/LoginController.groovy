@@ -11,7 +11,7 @@ class LoginController {
 
     def logout() {
         session.invalidate()
-        redirect(action:'/index')
+        redirect(action:'login/index')
     }
 
     def loginHandler(String userName, String password) {

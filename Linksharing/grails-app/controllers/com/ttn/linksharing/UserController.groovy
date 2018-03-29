@@ -1,6 +1,8 @@
 package com.ttn.linksharing
-//Update test case for usercontroller index action
-// Add show action for topic which will take id as a parameter
+/*
+If topic do not exist in database then user should redirected to
+login index action and flash error should be set
+*/
 class UserController {
 
     def index() {
@@ -9,5 +11,11 @@ class UserController {
 
     def show(Integer id){
 
+        if(Topic.findAllById(id).size()==0) {
+            flash.error="No Topics Found"
+            redirect(controller:"login",action:"index")
+        }
+
+        render("Topics Found")
     }
 }
