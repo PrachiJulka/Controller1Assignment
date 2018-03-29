@@ -1,20 +1,23 @@
 package com.ttn.linksharing
 
 //Add Application Interceptor with logging params for all controller and actions
+/*
 class ApplicatinInterceptor {
 
     ApplicatinInterceptor(){
-            matchAll()
+
     }
 
 
 
     boolean before() {
-        if (!session.user) {
+      */
+/*  if (!session.user) {
             flash.error= "NO ACTIVE SESSION"
              return false
         }
-       return true
+       return true*//*
+
     }
     boolean after() {
 
@@ -25,3 +28,4 @@ class ApplicatinInterceptor {
         // no-op
     }
 }
+*/

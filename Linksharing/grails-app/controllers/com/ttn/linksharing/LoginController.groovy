@@ -38,7 +38,7 @@ class LoginController {
         {
             flash.error="User not found"
         }
-        redirect(action:'index')
+        render(action:'index')
 
 
     }
