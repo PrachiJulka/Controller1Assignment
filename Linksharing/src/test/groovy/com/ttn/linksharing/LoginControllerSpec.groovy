@@ -6,7 +6,7 @@ import spock.lang.Specification
 
 
 
-//Delete existing index.gsp file Added test cases for login controller
+//That should include testing of all conditions specified in above exercise
 class LoginControllerSpec extends Specification implements ControllerUnitTest<LoginController>,DomainUnitTest<User> {
 
     def setup() {
