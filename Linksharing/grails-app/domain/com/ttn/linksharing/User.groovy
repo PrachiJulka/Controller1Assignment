@@ -1,12 +1,10 @@
 package com.ttn.linksharing
 //
 /*
-    Email should be unique, email type, not null, not blank
-    Password should be not null, not blank and minimum 5 charactes
-    FirstName,LastName shoule not be null and not blank
-    Photo, Admin and Active field can be null
-    Write test cases for validating user (including username and email uniqueness)
-
+   Write test case for the same Adde validator and transient field
+    for confirmpassword -Confirm password will be nullable true and blank
+     true when user is updating but
+    when its getting created it should match password and it cannot be null
 */
 
 class User {
@@ -22,21 +20,25 @@ class User {
     Date dateCreated
     Date lastUpdated
 
+    String confirmPassword
    // String name
     //List<Topic> topics
 
-   // static transients = ['name']
+   static transients = ['confirmPassword']
     static hasMany = [topics:Topic,subscriptions:Subscription,resources:Resource,resourceRating:ResourceRating,readingItems:ReadingItem]/*,subscriptions:Subscription,resources:Resource*/
 
     static constraints = {
         email(unique: true,email: true,blank: false,nullable: false)
         userName(unique: true,blank: false,nullable: false)
-        password(blank: false,nullable: false,minSize: 5)
+        password(blank: false,nullable: false,minSize: 5, validator: {password, obj ->
+              def password2 = obj.confirmPassword
+                        password == password2 ? true : ['invalid.matchingpasswords']
+        })
         firstName(blank: false,nullable: false)
         lastName(blank: false,nullable: false)
         photo(nullable:true,sqlType:'longBlob')
         admin(nullable:true)
-
+        confirmPassword(nullable: true,blank: true)
     }
 
     @Override

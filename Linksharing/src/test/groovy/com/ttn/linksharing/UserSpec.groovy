@@ -1,6 +1,8 @@
 package com.ttn.linksharing
 /*
-Add test cases for tostring of Topic and User*/
+Write test case for the same Adde validator and transient field for confirmpassword -Confirm password will be nullable true and blank true when user is updating but
+ when its getting created it should match password and it cannot be null
+ */
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
@@ -297,6 +299,32 @@ class UserSpec extends Specification implements DomainUnitTest<User> {
 
 
     }
+
+    def " password and confirm passowrd should match"(){
+        setup:
+        String email = "prachijulka@tothenew.com"
+        String password = 'p123133'
+
+        when:
+        User user = new User(email: email,userName:"prachiJ",
+                password:password,confirmPassword: password, firstName: "Prachi",
+                lastName: "Julka",admin:false,active:true)
+        user.save()
+        then:
+
+        User.count()==1
+
+        when:
+        User user1 = new User(email: email,userName:"prachiJ",
+                password:password,confirmPassword: "hey", firstName: "Prachi",
+                lastName: "Julka",admin:false,active:true)
+        user1.save()
+
+        then:
+        user1.errors.getFieldErrorCount('password')==1
+
+    }
+
 
 
 
