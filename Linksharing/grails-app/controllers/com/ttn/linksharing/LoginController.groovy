@@ -6,13 +6,11 @@ package com.ttn.linksharing
 class LoginController {
 
     def index() {
-
         if (session.user)
             forward(controller: 'user', action: 'index')
         else {
             if(!flash.error)
-
-                render("failure")
+            render("User not found")
         }
     }
 
@@ -28,6 +26,8 @@ class LoginController {
 
             if(user.active) {
              session.user=user
+                forward(controller: 'user', action: 'index')
+
             }
             else {
                flash.error = "Your account is not active"
@@ -39,7 +39,6 @@ class LoginController {
             flash.error="User not found"
         }
         redirect(action:'index')
-
 
 
     }
