@@ -1,6 +1,8 @@
 package com.ttn.linksharing
 
-//Create loginCheck interceptor which will work all the controller except login
+//If session.user is not set then redirect user to login index,
+// this should be done in interceptor
+// - user index action should render session user username
 class LoginCheckInterceptor {
 
     LoginCheckInterceptor(){
@@ -10,7 +12,7 @@ class LoginCheckInterceptor {
     boolean before() {
         if (!session.user) {
             flash.error= "NO ACTIVE SESSION"
-            return false
+            redirect(view:"login/index")
         }
 
         true
