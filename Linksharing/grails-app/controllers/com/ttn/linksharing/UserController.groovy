@@ -1,6 +1,8 @@
 package com.ttn.linksharing
 /*
-If topic found and its a public topic then it should render sucess
+If topic found is private then check
+ the subscription of logged in user exist
+ for the topic or not
 */
 class UserController {
 
@@ -10,13 +12,15 @@ class UserController {
 
     def show(Integer id){
 
-        if(!Topic.findByIdAndVisibility(id,Visibility.PUBLIC)) {
-            flash.error="No Topics Found"
-            redirect(controller:"login",action:"index")
+        Topic topic=Topic.get(id)
+        if(topic.visibility==Visibility.PUBLIC) {
+           render("success")
         }
-
-            render("sucess")
-
-
-    }
+        else{
+            if(Subscription.findByTopicsAndUser(topic,session.user))
+                render("Subscription Exists")
+            else
+                render("Subscription does not exists")
+        }
+     }
 }
